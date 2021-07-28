@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>
+          {% if title %}
+            {{ title }}
+          {% else %}
+            Title Not Set
+          {% endif %}
+        </title>
+    
+        <style>
+            html, body {
+                scroll-behavior: smooth;
+                height: 100%;
+                margin: 20px;
+                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                background: #a4bbcbff;
+            }
+
+            h1, h3 { 
+                color: #66383e;
+            }
+
+            a {
+                color: #a7345a;
+            }
+
+            p {
+                color: #295743;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+        <div>
+            <h1>{{ title }}</h1>
+            <h3> Section: {{ section }}</h3>
+            <a href="{{ url_for('index') }}">Home</a>
+            <hr>
+            <p> Reading .env file: {{ loc_var_01 }} </p>
+            <p> App Version: {{ app_version }} </p>
+
+            
+        </div>
+    </body>
+</html>
+
