@@ -9,3 +9,6 @@ class Config(object):
     LOC_VAR_01 = os.environ.get('LOC_VAR_01') or 'Failed'
     APP_VERSION = os.environ.get('APP_VERSION') or 'Unknown'
 
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
+        'sqlite:///' + os.path.join(basedir, 'app.db')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False

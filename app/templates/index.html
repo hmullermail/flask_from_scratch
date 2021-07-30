@@ -1,4 +1,5 @@
 <html>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <head>
         <title>
           {% if title %}
@@ -9,41 +10,172 @@
         </title>
     
         <style>
-            html, body {
-                scroll-behavior: smooth;
-                height: 100%;
-                margin: 20px;
-                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-                background: #a4bbcbff;
-            }
+        html, body {
+            scroll-behavior: smooth;
+            margin: 20px;
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            background: #a4bbcbff;
+        }
 
-            h1, h3 { 
-                color: #66383e;
-            }
+        h1, h3 { 
+            color: #66383e;
+        }
 
-            a {
-                color: #a7345a;
-            }
+        a {
+            color: #a7345a;
+        }
 
-            p {
-                color: #295743;
-            }
+        p {
+            color: #295743;
+        }
+
+/*************************************************************/
+/*                    Styling the tables                     */
+/*************************************************************/
+
+        table {
+            /*border-collapse: collapse;*/
+            font-family: monospace;
+            text-align: center;
+            width: 100%;
+        }
+
+        thead {
+            /*background-color: #f2a2a2;*/
+        }
+
+        tbody{
+            background-color: #d2d2d2;
+        }
+
+        td, th {
+            /*border: 0px solid #ccc;*/
+        }
+
+        th {
+            padding: 12px;
+            text-align: center;
+            background-color: #999191;  /* Head color */
+        }
+
+        td {
+            cursor: pointer;
+        }
+
+        tr:nth-child(even) {background-color: #e5e5e5;} /* Even rows color */
+        
+
+        tr:hover {background-color: #bdd;} /* Hover color */
+
+
+        #MyPage {
+            margin: auto;
+            max-width: 700px;
+            text-align: center;
+            scroll-behavior: auto;
+        }
+
+/*************************************************************/
+/*                      The Buttons                          */
+/*************************************************************/
+
+        .my_btn {
+            position: relative;
+            /*float: right;*/
+            margin: 15px;
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: #858585;
+            color: #FFFFFF99;
+            border-radius: 20px;
+        }
+
+        .my_btn:hover {
+            background-color: #77a7cc;
+            color: #555;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
         </style>
 
     </head>
 
     <body>
-        <div>
+        <div  id=MyPage>
             <h1>{{ title }}</h1>
             <h3> Section: {{ section }}</h3>
             <a href="{{ url_for('index') }}">Home</a>
             <hr>
             <p> Reading .env file: {{ loc_var_01 }} </p>
             <p> App Version: {{ app_version }} </p>
+            <button id="add2db" class="my_btn" style="float: right;"> + </button>
+            <button id="erasedb" class="my_btn" style="float: left;"> &times </button>
 
-            
+            <div id=MyTable>
+            <table>
+                <thead>
+                  <tr>
+                      <th>Id</th>
+                      <th>Item</th>
+                      <th>Value</th>
+                      <th>Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for row in mytable_rows %}
+                  <tr>
+                      <th>{{ row.id }}</th>
+                      <td>{{ row.item }}</td> 
+                      <td>{{ row.value }}</td>
+                      <td>{{ '{:%m/%d/%Y %H:%M:%S}'.format(row.stamp)}}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+            </table>
+            </div>
         </div>
+        <script>
+
+            $('#add2db').on('click', function(){
+                req = $.ajax({
+                    type : 'POST',
+                    url : '/index',
+                    data : { button : 'add2db'}, 
+                    success : function(){
+                        // alert('Done!');
+                    }
+                });
+
+                req.done(function(data) {
+                  $('#MyTable').html(data);
+                });
+            });
+
+            $('#erasedb').on('click', function(){
+                req = $.ajax({
+                    type : 'POST',
+                    url : '/index',
+                    data : { button : 'erasedb'}, 
+                    success : function(){
+                        // alert('Done!');
+                    }
+                });
+
+                req.done(function(data) {
+                  $('#MyTable').html(data);
+                });
+            });
+
+        </script>
+
     </body>
+
 </html>
+
+
 

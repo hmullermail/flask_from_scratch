@@ -23,6 +23,12 @@ __pycache__
 # Virtual environment
 venv
 
+# Database
+migrations
+app.db
+
 # Environment files
 .env
 .env-mysql
+
+app.db
