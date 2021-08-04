@@ -4,10 +4,9 @@
 - v0.1 : Simple Multiple Files Project
 - v0.2 : Adding a Configuration File
 - v0.3 : Adding a Database
+- v0.4 : Adding a Web Form
 
-#### Instructions before running flask:
+#### Instructions:
 
-    flask db init
-    flask db migrate -m "Write a message"
-    flask db upgrade
+    pip install -r requirements.txt
     flask run
