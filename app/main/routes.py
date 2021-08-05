@@ -1,23 +1,24 @@
-from flask import render_template, redirect, url_for, request
+from flask import current_app, render_template, redirect, url_for, request
 import random, logging
-from app import app
+
 from app import db
+from app.main import bp
 from app.models import *
-from app.forms import MyTable_Form
+from app.main.forms import MyTable_Form
 
 logging.basicConfig(level=logging.DEBUG, format='(%(threadName)-9s) %(message)s',)
 
-@app.route('/')
-@app.route('/index', methods=['GET', 'POST'])
+@bp.route('/')
+@bp.route('/index', methods=['GET', 'POST'])
 def index():
 
     mytableform = MyTable_Form()
 
     templateData = {
         'title' : 'Flask from Scratch',
-        'section' : 'v0.4 : Adding a Form',
-        'loc_var_01' : app.config['LOC_VAR_01'],
-        'app_version' : app.config['APP_VERSION'],
+        'section' : 'v1.0 : Project Structure with Blueprints',
+        'loc_var_01' : current_app.config['LOC_VAR_01'],
+        'app_version' : current_app.config['APP_VERSION'],
         'mytable_rows' : MyTable.query.all(),
         'form' : mytableform
     }
@@ -56,4 +57,16 @@ def index():
         return render_template('index_mytable.html', **templateData)
     
     return render_template('index.html', **templateData)
+
+@bp.route('/media', methods=['GET', 'POST'])
+def media():
+
+    templateData = {
+        'title' : 'Another Page Style',
+        'section' : 'v1.0 : Project Structure with Blueprints',
+        'loc_var_01' : current_app.config['LOC_VAR_01'],
+        'app_version' : current_app.config['APP_VERSION']
+    }
+    
+    return render_template('media.html', **templateData)
 

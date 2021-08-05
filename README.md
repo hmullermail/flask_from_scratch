@@ -5,8 +5,8 @@
 - v0.2 : Adding a Configuration File
 - v0.3 : Adding a Database
 - v0.4 : Adding a Web Form
+- v1.0 : Project Structure with Blueprints
 
 #### Instructions:
 
-    pip install -r requirements.txt
     flask run

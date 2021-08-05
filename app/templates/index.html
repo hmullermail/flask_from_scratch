@@ -1,298 +1,118 @@
-<html>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <head>
-        <title>
-          {% if title %}
-            {{ title }}
-          {% else %}
-            Title Not Set
-          {% endif %}
-        </title>
+{% extends "base.html" %}
+
+{% block head %}
+<style>
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div  id=MyPage>
+    <h1>{{ title }}</h1>
+    <h3> Section: {{ section }}</h3>
+    <a href="{{ url_for('main.index') }}">Home</a>
+    <a href="{{ url_for('main.media') }}">Media</a>
+    <hr>
+    <p> Reading .env file: {{ loc_var_01 }} </p>
+    <p> App Version: {{ app_version }} </p>
+
     
-        <style>
-        html, body {
-            scroll-behavior: smooth;
-            margin: 20px;
-            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-            background: #a4bbcbff;
-        }
-
-        h1, h3 { 
-            color: #66383e;
-        }
-
-        a {
-            color: #a7345a;
-        }
-
-        p {
-            color: #295743;
-        }
-
-        label {
-            color: #66383e;
-            /*font-family: monospace;*/
-            font-size: 18px;
-        }
-
-
-/*************************************************************/
-/*                    Styling the tables                     */
-/*************************************************************/
-
-        table {
-            /*border-collapse: collapse;*/
-            font-family: monospace;
-            text-align: center;
-            width: 100%;
-        }
-
-        thead {
-            /*background-color: #f2a2a2;*/
-        }
-
-        tbody{
-            background-color: #d2d2d2;
-        }
-
-        td, th {
-            /*border: 0px solid #ccc;*/
-        }
-
-        th {
-            padding: 12px;
-            text-align: center;
-            background-color: #999191;  /* Head color */
-        }
-
-        td {
-            cursor: pointer;
-        }
-
-        tr:nth-child(even) {background-color: #e5e5e5;} /* Even rows color */
-        
-
-        tr:hover {background-color: #bdd;} /* Hover color */
-
-
-        #MyPage {
-            margin: auto;
-            max-width: 700px;
-            text-align: center;
-            scroll-behavior: auto;
-        }
-
-        #MyForm {
-            background-color: #999191;
-            padding: 20px 10px 0px 10px;
-            /*margin-top: 30px;*/
-            margin: 30px auto 0px auto;
-            max-width: 200px;
-            text-align: center;
-            border: 1px solid #999;
-            border-style: groove;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 8px 0 rgba(0, 0, 0, 0.19);
-        }
-
-/*************************************************************/
-/*                        The forms                          */
-/*************************************************************/
-        
-/* Mark input boxes that gets an error on validation: */
-input.invalid {
-    background-color: #ffdddd;
-}
-
-button#submit {
-    background-color: #565656;
-    color: #FFFFFF99;
-    padding: 15px 10px;
-    margin-top: 8px;
-    border: none;
-    border-radius: 30px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 8px 0 rgba(0, 0, 0, 0.19);
-
-}
-
-button#submit:hover {
-    background-color: #77a7cc;
-    color: #555;
-    text-decoration: none;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-input {
-    background-color: #d2d2d2;
-    text-align: center;
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    color: #1a3a1a;
-    padding: 4px;
-    border-style: none;
-    border-radius: 20px;
-}
-
-input:focus, textarea:focus {
-    background-color: #d2d2d2;
-    outline      : none;
-}
-
-textarea#note {
-    position: relative;
-    top: 20px;
-    width: 100%;
-    height: 100px;
-    max-width: 100%;
-    /*background-color: #09090909;*/
-    color: #bfcfbf;
-    margin-bottom: 20px;
-    background: none;
-    border: none;
-    /*padding: 20px;*/
-    resize: none;
-    overflow: auto;
-}
-
-/*************************************************************/
-/*                      The Buttons                          */
-/*************************************************************/
-
-        .my_btn {
-            position: relative;
-            /*float: right;*/
-            margin: 15px;
-            width: 40px;
-            height: 40px;
-            font-size: 18px;
-            border: none;
-            outline: none;
-            background-color: #858585;
-            color: #FFFFFF99;
-            border-radius: 20px;
-        }
-
-        .my_btn:hover {
-            background-color: #77a7cc;
-            color: #555;
-            text-decoration: none;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        </style>
-
-    </head>
-
-    <body>
-        <div  id=MyPage>
-            <h1>{{ title }}</h1>
-            <h3> Section: {{ section }}</h3>
-            <a href="{{ url_for('index') }}">Home</a>
-            <hr>
-            <p> Reading .env file: {{ loc_var_01 }} </p>
-            <p> App Version: {{ app_version }} </p>
-
-            
-            <div id=MyForm>
-                <form id="submit_form">
-                    {{ form.hidden_tag() }}
-                    <div>
-                        <label> {{ form.item.label }} </label>
-                        <p id="theItem" class="form_field">{{ form.item }}</p>
-                    </div>
-
-                    <div>
-                        <label> {{ form.value.label }} </label>
-                        <p id="theValue" class="form_field">{{ form.value }}</p>  
-                    </div>
-                    <button id="submit" type="submit"> Save </button>
-                </form>
+    <div id=MyForm>
+        <form id="submit_form">
+            {{ form.hidden_tag() }}
+            <div>
+                <label> {{ form.item.label }} </label>
+                <p id="theItem" class="form_field">{{ form.item }}</p>
             </div>
-            <div id="MyPanel">
-            <button id="add2db" class="my_btn" style="float: right;"> + </button>
-            <button id="erasedb" class="my_btn" style="float: left;"> &times </button>
+
+            <div>
+                <label> {{ form.value.label }} </label>
+                <p id="theValue" class="form_field">{{ form.value }}</p>  
             </div>
-            <div id=MyTable>
-            <table>
-                <thead>
-                  <tr>
-                      <th>Id</th>
-                      <th>Item</th>
-                      <th>Value</th>
-                      <th>Time</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for row in mytable_rows %}
-                  <tr>
-                      <th>{{ row.id }}</th>
-                      <td>{{ row.item }}</td> 
-                      <td>{{ row.value }}</td>
-                      <td>{{ '{:%m/%d/%Y %H:%M:%S}'.format(row.stamp)}}</td>
-                  </tr>
-                  {% endfor %}
-                </tbody>
-            </table>
-            </div>
-            
-        </div>
-        <script>
+            <button id="submit" type="submit"> Save </button>
+        </form>
+    </div>
+    <div id="MyPanel">
+    <button id="add2db" class="my_btn" style="float: right;"> + </button>
+    <button id="erasedb" class="my_btn" style="float: left;"> &times </button>
+    </div>
+    <div id=MyTable>
+    <table>
+        <thead>
+          <tr>
+              <th>Id</th>
+              <th>Item</th>
+              <th>Value</th>
+              <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in mytable_rows %}
+          <tr>
+              <th>{{ row.id }}</th>
+              <td>{{ row.item }}</td> 
+              <td>{{ row.value }}</td>
+              <td>{{ '{:%m/%d/%Y %H:%M:%S}'.format(row.stamp)}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    
+</div>
 
-            $('#submit_form').on('submit', function(e){
-                e.preventDefault();
+<script>
 
-                var form = $('#submit_form')[0];
-                var data = new FormData(form)
+$('#submit_form').on('submit', function(e){
+    e.preventDefault();
 
-                data.append('button', 'submit')
- 
-                req = $.ajax({
-                    type : 'POST',
-                    url : '/index',
-                    data : data,
-                    contentType: false,
-                    processData: false, 
-                    success : function(){
-                    }
-                });
-                req.done(function(data) {
-                  $('#MyTable').html(data);
-                });
-            });
+    var form = $('#submit_form')[0];
+    var data = new FormData(form)
 
+    data.append('button', 'submit')
 
-            $('#add2db').on('click', function(){
-                req = $.ajax({
-                    type : 'POST',
-                    url : '/index',
-                    data : { button : 'add2db'}, 
-                    success : function(){
-                    }
-                });
-                req.done(function(data) {
-                  $('#MyTable').html(data);
-                });
-            });
-
-            $('#erasedb').on('click', function(){
-                req = $.ajax({
-                    type : 'POST',
-                    url : '/index',
-                    data : { button : 'erasedb'}, 
-                    success : function(){
-                    }
-                });
-                req.done(function(data) {
-                  $('#MyTable').html(data);
-                });
-            });
-
-        </script>
-
-    </body>
-
-</html>
+    req = $.ajax({
+        type : 'POST',
+        url : '/index',
+        data : data,
+        contentType: false,
+        processData: false, 
+        success : function(){
+        }
+    });
+    req.done(function(data) {
+      $('#MyTable').html(data);
+    });
+});
 
 
+$('#add2db').on('click', function(){
+    req = $.ajax({
+        type : 'POST',
+        url : '/index',
+        data : { button : 'add2db'}, 
+        success : function(){
+        }
+    });
+    req.done(function(data) {
+      $('#MyTable').html(data);
+    });
+});
 
+$('#erasedb').on('click', function(){
+    req = $.ajax({
+        type : 'POST',
+        url : '/index',
+        data : { button : 'erasedb'}, 
+        success : function(){
+        }
+    });
+    req.done(function(data) {
+      $('#MyTable').html(data);
+    });
+});
+
+</script>
+
+{% endblock %}
