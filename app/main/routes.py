@@ -16,7 +16,7 @@ def index():
 
     templateData = {
         'title' : 'Flask from Scratch',
-        'section' : 'v1.0 : Project Structure with Blueprints',
+        'section' : 'v1.1 : Adding an API layer',
         'loc_var_01' : current_app.config['LOC_VAR_01'],
         'app_version' : current_app.config['APP_VERSION'],
         'mytable_rows' : MyTable.query.all(),
@@ -63,7 +63,7 @@ def media():
 
     templateData = {
         'title' : 'Another Page Style',
-        'section' : 'v1.0 : Project Structure with Blueprints',
+        'section' : 'v1.1 : Adding an API layer',
         'loc_var_01' : current_app.config['LOC_VAR_01'],
         'app_version' : current_app.config['APP_VERSION']
     }

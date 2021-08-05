@@ -6,6 +6,7 @@
 - v0.3 : Adding a Database
 - v0.4 : Adding a Web Form
 - v1.0 : Project Structure with Blueprints
+- v1.1 : Adding an API layer
 
 #### Instructions:
 
