@@ -5,8 +5,9 @@ from app import db
 from app.main import bp
 from app.models import *
 from app.main.forms import MyTable_Form
+from app.main.boot import *
 
-logging.basicConfig(level=logging.DEBUG, format='(%(threadName)-9s) %(message)s',)
+# logging.basicConfig(level=logging.DEBUG, format='(%(threadName)-9s) %(message)s',)
 
 @bp.route('/')
 @bp.route('/index', methods=['GET', 'POST'])
@@ -16,7 +17,7 @@ def index():
 
     templateData = {
         'title' : 'Flask from Scratch',
-        'section' : 'v1.1 : Adding an API layer',
+        'section' : 'v1.2 : Adding a Boot Module',
         'loc_var_01' : current_app.config['LOC_VAR_01'],
         'app_version' : current_app.config['APP_VERSION'],
         'mytable_rows' : MyTable.query.all(),
@@ -63,10 +64,10 @@ def media():
 
     templateData = {
         'title' : 'Another Page Style',
-        'section' : 'v1.1 : Adding an API layer',
+        'section' : 'v1.2 : Adding a Boot Module',
         'loc_var_01' : current_app.config['LOC_VAR_01'],
         'app_version' : current_app.config['APP_VERSION']
     }
-    
+
     return render_template('media.html', **templateData)
 

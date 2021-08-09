@@ -23,6 +23,12 @@ def create_app(config_class=Config):
         from app.api import bp as api_bp
         app.register_blueprint(api_bp, url_prefix='/api')
 
+        from app.main.boot import OnBoot, cyclic_task, sayhello
+
+        if app.config['START_FLAG'] == "True":
+            OnBoot()
+            cyclic_task(sayhello)
+            
         return app
 
 

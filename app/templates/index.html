@@ -53,7 +53,7 @@
               <th>{{ row.id }}</th>
               <td>{{ row.item }}</td> 
               <td>{{ row.value }}</td>
-              <td>{{ '{:%m/%d/%Y %H:%M:%S}'.format(row.stamp)}}</td>
+              <td>{{ (row.stamp).strftime("%b %d %Y %H:%M:%S") }}</td>
           </tr>
           {% endfor %}
         </tbody>

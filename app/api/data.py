@@ -11,8 +11,7 @@ def data():
     t = MyTable.query.all()
     table_data = {}
     for i in t:
-        table_data['{:%d/%m/%Y %H:%M:%S}'.format(i.stamp)] = i.value
-    
+        table_data[(i.stamp).strftime("%b %d %Y %H:%M:%S")] = i.value
     return jsonify(table_data)
 
 
@@ -22,5 +21,5 @@ def system():
     system_info['Platform System'] = sys.platform
     system_info['OS Name'] = os.name
     system_info['Pathlib absolute'] = '/'.join(str(pathlib.Path().absolute()).split("\\"))    
-    
+
     return jsonify(system_info)

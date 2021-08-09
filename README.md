@@ -7,7 +7,9 @@
 - v0.4 : Adding a Web Form
 - v1.0 : Project Structure with Blueprints
 - v1.1 : Adding an API layer
+- v1.2 : Adding a Boot Module
 
 #### Instructions:
-
+    
+    export START_FLAG = True
     flask run
