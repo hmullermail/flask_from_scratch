@@ -17,7 +17,7 @@ def index():
 
     templateData = {
         'title' : 'Flask from Scratch',
-        'section' : 'v1.2 : Adding a Boot Module',
+        'section' : 'v2.0 : Running Docker Containers',
         'loc_var_01' : current_app.config['LOC_VAR_01'],
         'app_version' : current_app.config['APP_VERSION'],
         'mytable_rows' : MyTable.query.all(),
@@ -64,7 +64,7 @@ def media():
 
     templateData = {
         'title' : 'Another Page Style',
-        'section' : 'v1.2 : Adding a Boot Module',
+        'section' : 'v2.0 : Running Docker Containers',
         'loc_var_01' : current_app.config['LOC_VAR_01'],
         'app_version' : current_app.config['APP_VERSION']
     }
